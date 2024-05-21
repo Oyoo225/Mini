@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Stop Watch</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+            }
+            #stopwatch {
+                font-size: 3em;
+                margin-bottom: 20px;
+                text-align: center;
+                padding: 20px;
+                border: 2px solid #333;
+                border-radius: 10px;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            button {
+                font-size: 1em;
+                margin: 5px;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                background-color: #0056b3;
+                color: white;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            }
+            
+            .buttons {
+                text-align: center;
+            }
+            .redcolor{
+                background-color: red;
+                color: black;
+            }
+    
+        </style>
+    </head>
+    <body> 
+        <div id="stopwatch">00:00:00</div>
+        <button onclick="start()" id="twoway">Start</button>
+        <button onclick="clearT()">Clear</button>
+    </body>
+    <script>
+        let sec = 0, min = 0, ho = 0;
+        let intervalId;
+        const button = document.getElementById("twoway");
+
+        function start(){
+            
+            if(!intervalId){
+                intervalId = setInterval(run, 100);
+                document.getElementById("twoway").innerHTML = "Pause";
+                button.classList.add("redcolor");
+            }
+            else{
+                clearInterval(intervalId);
+                intervalId = null;
+                document.getElementById("twoway").innerHTML = "Start";
+                button.classList.remove("redcolor");
+            }
+        }
+
+        function clearT(){
+            sec=0, min=0, ho=0;
+            document.getElementById("stopwatch").innerHTML = "00:00:00";
+        }
+
+        function run(){
+            sec++;
+            if(sec==60){
+                sec=0;
+                min++;
+                if(min == 60){
+                    min =0;
+                    ho++;
+                }
+            }
+
+
+            /*
+            if(sec<10){
+                second = '0'+sec;
+            }else{
+                second = sec;
+            }
+            if(min<10){
+                minute = '0'+min;
+            }else{
+                minute = min;
+            }
+            if(ho<10){
+                hour = '0'+ho;
+            }else{
+                hour = ho;
+            } */
+
+            let second = sec < 10 ? '0' + sec : sec;
+            let minute = min <10 ? '0'+min : min;
+            let hour = ho < 10? '0'+ ho : ho;
+
+            document.getElementById("stopwatch").innerHTML = hour+':'+minute+':'+second;
+        }
+    </script>
+</html>

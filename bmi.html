@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #answer {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 400px;
+            background-color: white;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .highlight {
+            background-color: #add8e6 !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>BMI Calculator</h1>
+
+    <input type="text" id="weightValue" placeholder="Enter weight">
+    <select id="weight">
+        <option value="kg">Kg</option>
+        <option value="lb">Lb</option>
+    </select>
+    <br>
+    <input type="text" id="heightValue" placeholder="Enter height">
+    <select id="height">
+        <option value="m">Meters</option>
+        <option value="in">Inches</option>
+    </select>
+    <br>
+    <button onclick="calculate()">Calculate BMI</button>
+
+    <p id="answer"></p>
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>BMI</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-min="0" data-max="18.4">
+                    <td>&lt;18.4</td>
+                    <td>Underweight</td>
+                </tr>
+                <tr data-min="18.5" data-max="24.9">
+                    <td>18.5-24.9</td>
+                    <td>Normal</td>
+                </tr>
+                <tr data-min="25.0" data-max="29.9">
+                    <td>25.0-29.9</td>
+                    <td>Overweight</td>
+                </tr>
+                <tr data-min="30.0" data-max="39.9">
+                    <td>30.0-39.9</td>
+                    <td>Obese</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function calculate() {
+            let weight = parseFloat(document.getElementById("weightValue").value);
+            let height = parseFloat(document.getElementById("heightValue").value);
+
+            if (isNaN(weight)) {
+                alert("Please enter a valid number for weight.");
+                return; // Exit the function if weight is invalid
+            }
+
+            if (isNaN(height)) {
+                alert("Please enter a valid number for height.");
+                return; // Exit the function if height is invalid
+            }
+
+            // Convert weight to kilograms if selected unit is Lb
+            const weightSelect = document.getElementById("weight");
+            if (weightSelect.value === "lb") {
+                weight *= 0.453592;
+            }
+
+            // Convert height to meters if selected unit is inches
+            const heightSelect = document.getElementById("height");
+            if (heightSelect.value === "in") {
+                height *= 0.0254;
+            }
+
+            // Calculate BMI and display result
+            const bmi = weight / Math.pow(height, 2);
+            document.getElementById("answer").innerHTML = "Your BMI is: " + bmi.toFixed(2);
+
+            // Highlight the appropriate row based on BMI
+            const rows = document.querySelectorAll("table tbody tr");
+            rows.forEach(row => {
+                const min = parseFloat(row.getAttribute('data-min'));
+                const max = parseFloat(row.getAttribute('data-max'));
+                if (bmi >= min && bmi <= max) {
+                    row.classList.add('highlight');
+                } else {
+                    row.classList.remove('highlight');
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
