@@ -1,100 +1,111 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Ram Food</title>
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
-        #text {
-            font-size: 2em;
-            margin-bottom: 20px;
-            text-align: center;
-            padding: 20px;
-            border: 2px solid #333;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        button {
-            font-size: 1.5em;
-            margin: 5px;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #007bff;
-            color: white;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .img-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-            padding: 20px;
-            border: 2px solid #333;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .img {
-            height: 200px;
-            width: auto;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom, #ffcc99, #ff9966);
+      }
+      #text {
+        font-size: 2em;
+        margin-bottom: 20px;
+        text-align: center;
+        padding: 20px;
+        border: 2px solid #333;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      button {
+        font-size: 1.5em;
+        margin: 5px;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #ff704d;
+        color: white;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+      button:hover {
+        background-color: #e65c33;
+      }
+      .img-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        padding: 20px;
+        border: 2px solid #333;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .img {
+        height: 200px;
+        width: auto;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      .back-button {
+        position: absolute;
+        border-radius: 50%;
+        top: 40px;
+        left: 30px;
+        width: 30px;
+        height: 30px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <a href="index.html"
+      ><img src="image/back.jpeg" class="back-button" alt="Back"
+    /></a>
     <div id="text">What should I eat today?</div>
     <button onclick="run()">Click Me</button>
     <div id="imgContainer" class="img-container"></div>
     <script>
-        function run() {
-            const ranNum = Math.floor(Math.random() * 6);
-            let imgSrc;
-            switch (ranNum) {
-                case 0:
-                    imgSrc = "Image/padThai.jpeg";
-                    break;
-                case 1:
-                    imgSrc = "Image/mukaht.jpeg";         
-                    break;
-                case 2:
-                    imgSrc = "Image/mFood.jpeg";                   
-                    break;
-                case 3:
-                    imgSrc = "Image/Cfood.webp";                    
-                    break;
-                case 4:
-                    imgSrc = "Image/xiangguo.jpeg";
-                    break;
-                default:
-                    imgSrc = "Image/ifood.webp";
-                    break;
-            }
-            myFunction(imgSrc);
+      function run() {
+        const ranNum = Math.floor(Math.random() * 6);
+        let imgSrc;
+        switch (ranNum) {
+          case 0:
+            imgSrc = "Image/padThai.jpeg";
+            break;
+          case 1:
+            imgSrc = "Image/mukaht.jpeg";
+            break;
+          case 2:
+            imgSrc = "Image/mFood.jpeg";
+            break;
+          case 3:
+            imgSrc = "Image/Cfood.webp";
+            break;
+          case 4:
+            imgSrc = "Image/xiangguo.jpeg";
+            break;
+          default:
+            imgSrc = "Image/ifood.webp";
+            break;
         }
+        myFunction(imgSrc);
+      }
 
-        function myFunction(imgSrc) {
-            const imgContainer = document.getElementById("imgContainer");
-            imgContainer.innerHTML = "";  // Clear previous image
-            const img = document.createElement("IMG");
-            img.setAttribute("src", imgSrc);
-            img.classList.add("img");
-            imgContainer.appendChild(img);
-        }           
+      function myFunction(imgSrc) {
+        const imgContainer = document.getElementById("imgContainer");
+        imgContainer.innerHTML = ""; // Clear previous image
+        const img = document.createElement("IMG");
+        img.setAttribute("src", imgSrc);
+        img.classList.add("img");
+        imgContainer.appendChild(img);
+      }
     </script>
-</body>
+  </body>
 </html>

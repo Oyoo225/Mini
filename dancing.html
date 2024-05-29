@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Danfo&family=Major+Mono+Display&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(135deg, #ffcc33, #ff6699);
+        font-family: "Major Mono Display", monospace;
+      }
+      .container {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .result {
+        font-size: 3em;
+        margin-bottom: 20px;
+      }
+      button {
+        font-size: 1em;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #ff6699;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #ff3366;
+      }
+      .back-button {
+        position: absolute;
+        border-radius: 50%;
+        top: 40px;
+        left: 30px;
+        width: 30px;
+        height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="index.html"
+      ><img src="image/back.jpeg" class="back-button" alt="Back"
+    /></a>
+    <div class="container">
+      <div id="result" class="result"></div>
+      <div>
+        <button onclick="run()">Press 🤫</button>
+      </div>
+    </div>
+
+    <script>
+      function run() {
+        const ram = Math.floor(Math.random() * 12);
+        const str = document.getElementById("result");
+        switch (ram) {
+          case 0:
+            str.innerHTML = "No great thing is create suddenly 🤯";
+            break;
+          case 1:
+            str.innerHTML = "Free your mind, free your soul 👻";
+            break;
+          case 2:
+            str.innerHTML = "Energy and persistence conquer all things 🧘‍♂️";
+            break;
+          case 3:
+            str.innerHTML =
+              "If you believe in yourself, anything is possible 🤓";
+            break;
+          case 4:
+            str.innerHTML = "The key to your happiness is in your pocket 🗝️";
+            break;
+          case 5:
+            str.innerHTML = "Happiness is a way of travel - Not a destination";
+            break;
+          case 6:
+            str.innerHTML = "Once you choose hope, anything's possible";
+            break;
+          case 7:
+            str.innerHTML = "Stop looking for the magic. You are it! 😎";
+            break;
+          case 8:
+            str.innerHTML = "Lose yourself in your daydreams 🌇";
+            break;
+          case 9:
+            str.innerHTML = "My sun sets to rise again 🌞";
+            break;
+          case 10:
+            str.innerHTML = "What you plant now, you will hervest later 🌱";
+            break;
+          case 11:
+            str.innerHTML = "Think happy thought";
+            break;
+          case 12:
+            str.innerHTML = "Follow your own star.💫";
+            break;
+
+          default:
+            str.innerHTML = "If you want to be happy, be";
+        }
+      }
+    </script>
+  </body>
+</html>

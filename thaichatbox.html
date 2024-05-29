@@ -1,161 +1,163 @@
 <!DOCTYPE html>
 <html>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <head>
-        <title>Chatbox</title>
-        <style>
-            body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: url('../image/galaxy.webp') no-repeat center center fixed;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <title>Chatbox</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+      }
 
-            .chat-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 300px;
-            height: 400px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-            padding: 10px;
-            }
+      .chat-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 300px;
+        height: 400px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+        padding: 10px;
+      }
 
-            .input-container {
-            display: flex;
-            width: 320px;
-            margin-top: 10px;
-            }
+      .input-container {
+        display: flex;
+        width: 320px;
+        margin-top: 10px;
+      }
 
-            .input-container input[type="text"] {
-            flex: 1;
-            width: 100%;
-            padding: 15px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 20px;
-            outline: none;
-            }
+      .input-container input[type="text"] {
+        flex: 1;
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        outline: none;
+      }
 
-            .input-container button {
-            padding: 10px 20px;
-            margin-left: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: #fff;
-            cursor: pointer;
-            outline: none;
-            }
+      .input-container button {
+        padding: 10px 20px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        outline: none;
+      }
 
-            .input-container button:hover {
-            background-color: #0056b3;
-            }
+      .input-container button:hover {
+        background-color: #0056b3;
+      }
 
-            .message {
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            }
+      .message {
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+      }
 
-            .user-message {
-            background-color: #e1ffc7;
-            align-self: flex-start;
-            }
+      .user-message {
+        background-color: #e1ffc7;
+        align-self: flex-start;
+      }
 
-            .empty {
-            height: 20px;
-            }
+      .empty {
+        height: 20px;
+      }
 
-            .bot-message {
-            background-color: #d1e7fd;
-            align-self: flex-end;
-            }
+      .bot-message {
+        background-color: #d1e7fd;
+        align-self: flex-end;
+      }
 
-            h1 {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            }
+      h1 {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
 
-            .circle-image {
-            align-items: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
-            }
+      .circle-image {
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
 
-            .back-button {
-            position: absolute;
-            border-radius: 50%;
-            top: 40px;
-            left: 30px;
-            width: 30px;
-            height: 30px;
-            }
-        </style>
-    </head>
-   
-    <body>
-        <a href="index.html"><img src="image/back1.jpeg" class="back-button" alt="Back"></a>
-        <h1>Thai Learning Chatbox</h1>
-        
-      <div class="chat-container" id="chatContainer">
-        <!-- Chat messages will be displayed here -->
-      </div>
-      <div class="empty"></div>
-      <div>
-        <input type="text" id="userInput" placeholder="Type your message...">
-        <button class="sendMessage">Send</button>
-      </div>
-      
-      
-      <script type="importmap">
-        {
-          "imports": {
-            "@google/generative-ai": "https://esm.run/@google/generative-ai"
-          }
+      .back-button {
+        position: absolute;
+        border-radius: 50%;
+        top: 40px;
+        left: 30px;
+        width: 30px;
+        height: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="index.html"
+      ><img src="image/back.jpeg" class="back-button" alt="Back"
+    /></a>
+    <h1>Thai Learning Chatbox</h1>
+
+    <div class="chat-container" id="chatContainer">
+      <!-- Chat messages will be displayed here -->
+    </div>
+    <div class="empty"></div>
+    <div>
+      <input type="text" id="userInput" placeholder="Type your message..." />
+      <button class="sendMessage">Send</button>
+    </div>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
         }
-      </script>
-      <script type="module">
-        import { GoogleGenerativeAI } from "@google/generative-ai";
-        const API_KEY = "AIzaSyBjdSNMmlVGAv2Q00o-zA4yqlZTyL6P32o";
-        const genAI = new GoogleGenerativeAI(API_KEY);
-        
-        document.querySelector('.sendMessage').addEventListener('click',()=>{
+      }
+    </script>
+    <script type="module">
+      import { GoogleGenerativeAI } from "@google/generative-ai";
+      const API_KEY = "AIzaSyBjdSNMmlVGAv2Q00o-zA4yqlZTyL6P32o";
+      const genAI = new GoogleGenerativeAI(API_KEY);
+
+      document.querySelector(".sendMessage").addEventListener("click", () => {
+        run();
+      });
+      const userInput = document.getElementById("userInput");
+      userInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
           run();
-        });
-        const userInput = document.getElementById('userInput');
-        userInput.addEventListener('keydown',(event)=>{
-          if (event.key === 'Enter'){
-            run();
-          }
-        });
-      
-        async function run(){
-          const userInput = document.getElementById('userInput').value;
-          displayMessage(userInput,'user');
-          const model = genAI.getGenerativeModel({ model: "gemini-pro"});
-          const chat = model.startChat({
-            history: [
+        }
+      });
+
+      async function run() {
+        const userInput = document.getElementById("userInput").value;
+        displayMessage(userInput, "user");
+        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        const chat = model.startChat({
+          history: [
             {
               role: "user",
               parts: [{ text: "hi" }],
             },
             {
               role: "model",
-              parts: [{ text: "Great to meet you. What would you like to know?" }],
+              parts: [
+                { text: "Great to meet you. What would you like to know?" },
+              ],
             },
             {
               role: "user",
@@ -163,7 +165,7 @@
             },
             {
               role: "model",
-              parts: [{ text: ` สวัสดี ฉันจะช่วยคุณได้อย่างไร?`}],
+              parts: [{ text: ` สวัสดี ฉันจะช่วยคุณได้อย่างไร?` }],
             },
             {
               role: "user",
@@ -171,7 +173,11 @@
             },
             {
               role: "model",
-              parts: [{ text: `วันเกิด mean birthday, ของราศีเมษค mean of Aries, คืออะไร mean What is , all together => What is Aries' birthday? `}],
+              parts: [
+                {
+                  text: `วันเกิด mean birthday, ของราศีเมษค mean of Aries, คืออะไร mean What is , all together => What is Aries' birthday? `,
+                },
+              ],
             },
             {
               role: "user",
@@ -179,7 +185,11 @@
             },
             {
               role: "model",
-              parts: [{ text: ` ฉัน mean I, รัก mean love, คุณ mean you, มาก mean very , all together => I love you very much. `}],
+              parts: [
+                {
+                  text: ` ฉัน mean I, รัก mean love, คุณ mean you, มาก mean very , all together => I love you very much. `,
+                },
+              ],
             },
             {
               role: "user",
@@ -187,62 +197,67 @@
             },
             {
               role: "model",
-              parts: [{ text: ` ฉัน mean I, จะหา mean look for, ร้านขายยา mean phermacy, ได้ที่ไหน mean where can , all together => Where can i find the phermacy? `}],
+              parts: [
+                {
+                  text: ` ฉัน mean I, จะหา mean look for, ร้านขายยา mean phermacy, ได้ที่ไหน mean where can , all together => Where can i find the phermacy? `,
+                },
+              ],
             },
             {
               role: "user",
-              parts: [{ text: "What is เขอโทษนะ ฉันจะหาห้องน้ำได้ที่ไหน? mean?" }],
+              parts: [
+                { text: "What is เขอโทษนะ ฉันจะหาห้องน้ำได้ที่ไหน? mean?" },
+              ],
             },
             {
               role: "model",
-              parts: [{ text: `เขอโทษนะ mean excuse me, ฉัน mean I, จะหา mean look for, ห้องน้ำ mean toilet, ได้ที่ไหน mean where can, all together => Excuse me, where can i find the toilet?`}],
+              parts: [
+                {
+                  text: `เขอโทษนะ mean excuse me, ฉัน mean I, จะหา mean look for, ห้องน้ำ mean toilet, ได้ที่ไหน mean where can, all together => Excuse me, where can i find the toilet?`,
+                },
+              ],
             },
-           
-      
           ],
           generationConfig: {
             maxOutputTokens: 1000,
           },
-          });
-          const result = await chat.sendMessage(userInput);
-          const response = await result.response;
-          const text = response.text();
-          displayMessage(text,'bot');
-      
-        }
-      
-        function displayMessage(message,role){
-          const chatConatainer = document.getElementById("chatContainer");
-          const messageElement = document.createElement("div");
-      
-          // Add labels for "user" and "bot" messages
-          const label = document.createElement("span");
-          label.innerText = role === 'user' ? 'User: ' : 'Bot: ';
-          label.style.fontWeight = 'bold';
-      
-          messageElement.appendChild(label);
-      
-          // Set class based on role for styling
-          messageElement.className = `message ${role === 'user' ? 'user-message' : 'bot-message'}`;
-      
-          // Add message content
-          const messageContent = document.createElement("span");
-          messageContent.innerText = message;
-      
-          messageElement.appendChild(messageContent);
-      
-          // Append message element to chat container
-          chatContainer.appendChild(messageElement);
-      
-          // Scroll to the bottom of the chat container
-          chatContainer.scrollTop = chatContainer.scrollHeight;
-      
-          document.getElementById("userInput").value="";
-      }  
-      
-        
-        
-      
-      </script>
-      </body>
+        });
+        const result = await chat.sendMessage(userInput);
+        const response = await result.response;
+        const text = response.text();
+        displayMessage(text, "bot");
+      }
+
+      function displayMessage(message, role) {
+        const chatConatainer = document.getElementById("chatContainer");
+        const messageElement = document.createElement("div");
+
+        // Add labels for "user" and "bot" messages
+        const label = document.createElement("span");
+        label.innerText = role === "user" ? "User: " : "Bot: ";
+        label.style.fontWeight = "bold";
+
+        messageElement.appendChild(label);
+
+        // Set class based on role for styling
+        messageElement.className = `message ${
+          role === "user" ? "user-message" : "bot-message"
+        }`;
+
+        // Add message content
+        const messageContent = document.createElement("span");
+        messageContent.innerText = message;
+
+        messageElement.appendChild(messageContent);
+
+        // Append message element to chat container
+        chatContainer.appendChild(messageElement);
+
+        // Scroll to the bottom of the chat container
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+
+        document.getElementById("userInput").value = "";
+      }
+    </script>
+  </body>
 </html>
