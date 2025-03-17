@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: rgb(222, 165, 91);
+      }
+      .calculator {
+        width: 250px;
+        background: rgb(121, 121, 144);
+        padding: 20px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        text-align: center;
+      }
+      .screen {
+        width: 100%;
+        height: 50px;
+        font-size: 2rem;
+        text-align: right;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        background: #eee;
+      }
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+      button {
+        padding: 15px;
+        font-size: 1.2rem;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        background: #ddd;
+      }
+      button:hover {
+        background: #ccc;
+      }
+      .operator {
+        background: #f77;
+        color: white;
+      }
+      .equal {
+        background: #4caf50;
+        color: white;
+      }
+      .back-button {
+        position: absolute;
+        border-radius: 50%;
+        top: 40px;
+        left: 30px;
+        width: 30px;
+        height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="index.html"
+      ><img src="image/back.jpeg" class="back-button" alt="Back"
+    /></a>
+    <div class="calculator">
+      <input type="text" class="screen" id="screen" disabled />
+      <div class="buttons">
+        <button onclick="clearScreen()">C</button>
+        <button onclick="appendValue('/')" class="operator">/</button>
+        <button onclick="appendValue('*')" class="operator">*</button>
+        <button onclick="appendValue('-')" class="operator">-</button>
+        <button onclick="appendValue('7')">7</button>
+        <button onclick="appendValue('8')">8</button>
+        <button onclick="appendValue('9')">9</button>
+        <button onclick="appendValue('+')" class="operator">+</button>
+        <button onclick="appendValue('4')">4</button>
+        <button onclick="appendValue('5')">5</button>
+        <button onclick="appendValue('6')">6</button>
+        <button onclick="calculateResult()" class="equal">=</button>
+        <button onclick="appendValue('1')">1</button>
+        <button onclick="appendValue('2')">2</button>
+        <button onclick="appendValue('3')">3</button>
+        <button onclick="appendValue('0')" style="grid-column: span 2">
+          0
+        </button>
+        <button onclick="appendValue('.')">.</button>
+      </div>
+    </div>
+    <script>
+      function appendValue(value) {
+        document.getElementById("screen").value += value;
+      }
+      function clearScreen() {
+        document.getElementById("screen").value = "";
+      }
+      function calculateResult() {
+        try {
+          document.getElementById("screen").value = eval(
+            document.getElementById("screen").value
+          );
+        } catch {
+          document.getElementById("screen").value = "Error";
+        }
+      }
+    </script>
+  </body>
+</html>

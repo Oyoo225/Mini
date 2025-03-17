@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Tasks</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+      }
+      table {
+        width: 80%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th, td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: left;
+      }
+      .completed {
+        text-decoration: line-through;
+        color: gray;
+      }
+      .back-button {
+        position: absolute;
+        border-radius: 50%;
+        top: 20px;
+        left: 20px;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+      }
+      .input-container {
+        margin-bottom: 20px;
+      }
+      input[type="text"] {
+        padding: 8px;
+        font-size: 16px;
+      }
+      button {
+        padding: 8px 12px;
+        font-size: 16px;
+        margin-left: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="index.html">
+      <img src="image/back.jpeg" class="back-button" alt="Back" />
+    </a>
+    
+    <div class="input-container">
+      <input type="text" placeholder="Task" id="task" />
+      <button onclick="addTask()">Enter</button>
+    </div>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Done</th>
+        </tr>
+      </thead>
+      <tbody id="taskList"></tbody>
+    </table>
+    
+    <script>
+      function addTask() {
+        let taskInput = document.getElementById("task");
+        let taskValue = taskInput.value.trim();
+        if (taskValue === "") return;
+
+        let table = document.getElementById("taskList");
+        let row = table.insertRow();
+
+        let taskCell = row.insertCell(0);
+        let checkCell = row.insertCell(1);
+
+        taskCell.textContent = taskValue;
+
+        let checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.onclick = function () {
+          row.classList.toggle("completed");
+          setTimeout(() => row.remove(), 500);
+        };
+        checkCell.appendChild(checkbox);
+
+        taskInput.value = "";
+      }
+    </script>
+  </body>
+</html>

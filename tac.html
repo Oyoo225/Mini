@@ -2,37 +2,147 @@
 <html>
   <head>
     <title>Tic-Tac-Toe Game</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5bc94;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        grid-template-rows: repeat(3, 100px);
+        justify-content: center;
+        gap: 0px;
+        align-items: center;
+        padding: 8px;
+      }
+      .cell {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 98px;
+        width: 98px;
+        font-size: 24px;
+        cursor: pointer;
+        background-color: white;
+        border: 1px solid black; /* Border around each cell */
+      }
+      .container .cell:nth-child(-n + 3) {
+        border-top: none; /* Remove top border for top row */
+      }
+      .container .cell:nth-child(3n + 1) {
+        border-left: none; /* Remove left border for first column */
+      }
+      .container .cell:nth-child(3n) {
+        border-right: none; /* Remove right border for third column */
+      }
+      .container .cell:nth-last-child(-n + 3) {
+        border-bottom: none; /* Remove bottom border for bottom row */
+      }
+      .back-button {
+        position: absolute;
+        border-radius: 50%;
+        top: 40px;
+        left: 30px;
+        width: 30px;
+        height: 30px;
+        margin-left: 10px;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
   </head>
-  <style>
-    .back-button {
-      position: absolute;
-      border-radius: 50%;
-      top: 40px;
-      left: 30px;
-      width: 30px;
-      height: 30px;
-    }
-  </style>
   <body>
-    <a href="index.html"
-      ><img src="image/back.jpeg" class="back-button" alt="Back"
-    /></a>
+    <a href="index.html">
+      <img src="image/back.jpeg" class="back-button" alt="Back" />
+    </a>
+    <h1>Game</h1>
     <div class="container">
-      <div>
-        <div>0</div>
-        <div>1</div>
-        <div>2</div>
-      </div>
-      <div>
-        <div>3</div>
-        <div>4</div>
-        <div>5</div>
-      </div>
-      <div>
-        <div>6</div>
-        <div>7</div>
-        <div>8</div>
-      </div>
+      <div class="cell" data-index="0"></div>
+      <div class="cell" data-index="1"></div>
+      <div class="cell" data-index="2"></div>
+      <div class="cell" data-index="3"></div>
+      <div class="cell" data-index="4"></div>
+      <div class="cell" data-index="5"></div>
+      <div class="cell" data-index="6"></div>
+      <div class="cell" data-index="7"></div>
+      <div class="cell" data-index="8"></div>
     </div>
+    <select id="player-select">
+      <option value="X">X</option>
+      <option value="O">O</option>
+    </select>
+    <button id="reset-button" class="hidden">Restart Game</button>
+    <script>
+      const cells = document.querySelectorAll(".cell");
+      const playerSelect = document.getElementById("player-select");
+      const resetButton = document.getElementById("reset-button");
+      let currentPlayer = playerSelect.value;
+      let gameState = Array(9).fill(null);
+      const winningCombinations = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+      ];
+
+      playerSelect.addEventListener("change", () => {
+        currentPlayer = playerSelect.value;
+      });
+
+      cells.forEach((cell) => {
+        cell.addEventListener("click", handleCellClick);
+      });
+
+      resetButton.addEventListener("click", resetGame);
+
+      function handleCellClick(event) {
+        const cell = event.target;
+        const index = cell.getAttribute("data-index");
+        if (gameState[index] || checkWinner()) {
+          return;
+        }
+        gameState[index] = currentPlayer;
+        cell.textContent = currentPlayer;
+        if (checkWinner()) {
+          setTimeout(() => alert(`${currentPlayer} wins!`), 100);
+          resetButton.classList.remove("hidden");
+        } else if (gameState.every((cell) => cell !== null)) {
+          setTimeout(() => alert(`It's a draw!`), 100);
+          resetButton.classList.remove("hidden");
+        } else {
+          currentPlayer = currentPlayer === "X" ? "O" : "X";
+          playerSelect.value = currentPlayer;
+        }
+      }
+
+      function checkWinner() {
+        return winningCombinations.some((combination) => {
+          const [a, b, c] = combination;
+          return (
+            gameState[a] &&
+            gameState[a] === gameState[b] &&
+            gameState[a] === gameState[c]
+          );
+        });
+      }
+
+      function resetGame() {
+        gameState.fill(null);
+        cells.forEach((cell) => {
+          cell.textContent = "";
+        });
+        currentPlayer = playerSelect.value;
+        resetButton.classList.add("hidden");
+      }
+    </script>
   </body>
 </html>
